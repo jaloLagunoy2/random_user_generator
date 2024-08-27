@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:random_user_generator/profile.dart/ui_user_profile.dart';
 import 'package:random_user_generator/request_handler.dart';
 import 'package:random_user_generator/user_profile/user_profile_ui.dart';
+import 'package:random_user_generator/utils/utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -85,6 +87,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               child: const Text('Fetch and display using getx'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () async {
+                  Clipboard.setData(const ClipboardData(text: gitRepoLink)); // Copies the text to clipboard
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Copied to Clipboard!')),
+        );
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(
+                    const Color.fromARGB(255, 49, 49, 49)),
+                foregroundColor: WidgetStateProperty.all(Colors.white),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0)),
+                ),
+              ),
+              child: const Text('Copy Git Repository'),
             ),
             const SizedBox(height: 8),
             const Text(
